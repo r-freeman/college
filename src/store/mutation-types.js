@@ -1,0 +1,12 @@
+// courses.js
+export const FETCH_COURSE = 'FETCH_COURSE';
+export const FETCH_COURSES = 'FETCH_COURSES';
+export const TOGGLE_ADD_COURSE_MODAL = 'TOGGLE_ADD_COURSE_MODAL';
+export const ADD_COURSE = 'ADD_COURSE';
+export const SET_TITLE = 'SET_TITLE';
+export const SET_CODE = 'SET_CODE';
+export const SET_DESCRIPTION = 'SET_DESCRIPTION';
+export const SET_POINTS = 'SET_POINTS';
+export const SET_LEVEL = 'SET_LEVEL';
+export const TOGGLE_DELETE_COURSE_MODAL = 'TOGGLE_DELETE_COURSE_MODAL';
+export const DELETE_COURSE = 'DELETE_COURSE';
