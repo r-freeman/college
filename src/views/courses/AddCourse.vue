@@ -132,9 +132,9 @@
 
 <script>
     import {ValidationProvider, ValidationObserver} from "vee-validate";
-    import Add from "../assets/svg/Add";
-    import Check from "../assets/svg/Check";
-    import Cross from "../assets/svg/Cross";
+    import Add from "../../assets/svg/Add";
+    import Check from "../../assets/svg/Check";
+    import Cross from "../../assets/svg/Cross";
 
     export default {
         name: "AddCourse",

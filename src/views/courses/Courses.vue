@@ -64,9 +64,9 @@
 </template>
 
 <script>
-    import Dashboard from "../layouts/Dashboard";
+    import Dashboard from "../../layouts/Dashboard";
     import AddCourse from "./AddCourse";
-    import Course from "../components/Course";
+    import Course from "../../components/Course";
     import {mapGetters, mapActions} from "vuex";
 
     export default {

@@ -88,7 +88,7 @@
 </template>
 
 <script>
-    import Dashboard from "../layouts/Dashboard";
+    import Dashboard from "../../layouts/Dashboard";
     import {mapGetters, mapActions} from "vuex";
     import EditCourse from "./EditCourse";
     import DeleteCourse from "./DeleteCourse";

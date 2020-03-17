@@ -2,12 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from "../views/Home";
-import Courses from "../views/Courses";
+import Courses from "../views/courses/Courses";
+import Course from "../views/courses/Course";
 import Enrolments from "../views/Enrolments";
 import Lecturers from "../views/Lecturers";
 import Login from "../views/Login";
 import Register from "../views/Register";
-import Course from "../views/Course";
 
 Vue.use(VueRouter);
 

@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import Warning from "../assets/svg/Warning";
+    import Warning from "../../assets/svg/Warning";
 
     export default {
         name: "DeleteCourse",
