@@ -11,7 +11,7 @@
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
                             <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                                <Warning class="h-6 w-6 text-green-400"/>
+                                <Add class="h-5 w-5 fill-current text-green-500"/>
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full sm:w-2/3">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -52,7 +52,7 @@
                                                 {{errors[0]}}</p>
                                         </div>
                                     </ValidationProvider>
-                                    <ValidationProvider rules="required|alpha_spaces" v-slot="{ valid, errors }">
+                                    <ValidationProvider rules="required" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="description"
                                                    class="block text-sm leading-5 font-medium text-gray-700">Description</label>
@@ -132,7 +132,7 @@
 
 <script>
     import {ValidationProvider, ValidationObserver} from "vee-validate";
-    import Warning from "../assets/svg/Warning";
+    import Add from "../assets/svg/Add";
     import Check from "../assets/svg/Check";
     import Cross from "../assets/svg/Cross";
 
@@ -148,7 +148,7 @@
         components: {
             ValidationProvider,
             ValidationObserver,
-            Warning,
+            Add,
             Check,
             Cross
         },
