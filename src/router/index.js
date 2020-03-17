@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Home from "../views/Home";
 import Courses from "../views/courses/Courses";
 import Course from "../views/courses/Course";
-import Enrolments from "../views/Enrolments";
+import Enrolments from "../views/enrolments/Enrolments";
 import Lecturers from "../views/Lecturers";
 import Login from "../views/Login";
 import Register from "../views/Register";
