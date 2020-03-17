@@ -23,8 +23,8 @@ const routes = [
         component: Courses
     },
     {
-        path: '/course/:id',
-        name: 'course',
+        path: '/courses/:id',
+        name: 'viewCourse',
         component: Course
     },
     {
