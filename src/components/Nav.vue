@@ -17,17 +17,17 @@
                             </router-link>
                             <router-link to="/courses"
                                          class="ml-4 px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
-                                         :class="[currentPage.includes('courses') ? activeClass : 'text-tropicalblue hover:text-white']">
+                                         :class="[currentPage.includes('course') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Courses
                             </router-link>
                             <router-link to="/enrolments"
                                          class="ml-4 px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
-                                         :class="[currentPage.includes('enrolments') ? activeClass : 'text-tropicalblue hover:text-white']">
+                                         :class="[currentPage.includes('enrolment') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Enrolments
                             </router-link>
                             <router-link to="/lecturers"
                                          class="ml-4 px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
-                                         :class="[currentPage.includes('lecturers') ? activeClass : 'text-tropicalblue hover:text-white']">
+                                         :class="[currentPage.includes('lecturer') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Lecturers
                             </router-link>
                         </div>
