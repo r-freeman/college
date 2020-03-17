@@ -4,7 +4,7 @@
             <div class="flex items-center">
                 <div>
                     <div class="text-sm leading-5 font-medium text-gray-900 hover:underline cursor-pointer">
-                        {{ enrolment.date }}
+                        {{ enrolment.date | moment("Do MMMM, YYYY") }}
                     </div>
                 </div>
             </div>
@@ -13,7 +13,7 @@
             <div class="flex items-center">
                 <div>
                     <div class="text-sm leading-5 font-medium text-gray-900">
-                        {{ enrolment.time }}
+                        {{ [enrolment.time, "hh:mm:ss"] | moment("hh:mm A") }}
                     </div>
                 </div>
             </div>

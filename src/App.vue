@@ -14,7 +14,7 @@
             }
         },
         created() {
-            this.$router.push('/courses');
+            this.$router.push('/enrolments');
         }
     }
 </script>
