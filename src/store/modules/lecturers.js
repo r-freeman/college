@@ -460,7 +460,8 @@ export default {
                     }
                 ]
             }
-        ]
+        ],
+        deleteLecturerModal: false
     },
     getters: {
         lecturer: state => {
@@ -469,16 +470,34 @@ export default {
         lecturers: state => {
             return state.lecturers;
         },
+        deleteLecturerModal: state => {
+            return state.deleteLecturerModal;
+        }
     },
     mutations: {
         [types.FETCH_LECTURER](state, payload) {
             state.lecturer = payload;
+        },
+        [types.TOGGLE_DELETE_LECTURER_MODAL](state) {
+            state.deleteLecturerModal = !state.deleteLecturerModal;
+        },
+        [types.DELETE_LECTURER](state, payload) {
+            state.lecturers.splice(state.lecturers.findIndex(lecturer => lecturer.id === payload), 1);
+            state.deleteLecturerModal = false;
         }
     },
     actions: {
         fetchLecturer({commit, state}, id) {
             // find the lecturer in lecturers with a given id
             commit(types.FETCH_LECTURER, state.lecturers.find(lecturer => lecturer.id === id));
+        },
+        toggleDeleteLecturerModal({commit}) {
+            commit(types.TOGGLE_DELETE_LECTURER_MODAL);
+        },
+        deleteLecturer({commit}, id) {
+            commit(types.DELETE_LECTURER, id);
+
+            // TODO: api
         }
     }
 }
