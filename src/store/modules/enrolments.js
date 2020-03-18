@@ -3,6 +3,7 @@ import * as types from "../mutation-types";
 export default {
     namespaced: true,
     state: {
+        enrolment: {},
         enrolments: [
             {
                 "id": 1,
@@ -30,10 +31,22 @@ export default {
         ]
     },
     getters: {
+        enrolment: state => {
+            return state.enrolment;
+        },
         enrolments: state => {
             return state.enrolments;
         },
     },
-    mutations: {},
-    actions: {}
+    mutations: {
+        [types.FETCH_ENROLMENT](state, payload) {
+            state.enrolment = payload;
+        },
+    },
+    actions: {
+        fetchEnrolment({commit, state}, id) {
+            // find the enrolment in enrolments with a given id
+            commit(types.FETCH_ENROLMENT, state.enrolments.find(enrolment => enrolment.id === id));
+        }
+    }
 }
