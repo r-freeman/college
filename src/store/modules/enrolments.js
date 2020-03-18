@@ -28,7 +28,8 @@ export default {
                     "phone": "003-0121554",
                 }
             }
-        ]
+        ],
+        deleteEnrolmentModal: false
     },
     getters: {
         enrolment: state => {
@@ -37,16 +38,34 @@ export default {
         enrolments: state => {
             return state.enrolments;
         },
+        deleteEnrolmentModal: state => {
+            return state.deleteEnrolmentModal;
+        }
     },
     mutations: {
         [types.FETCH_ENROLMENT](state, payload) {
             state.enrolment = payload;
         },
+        [types.TOGGLE_DELETE_ENROLMENT_MODAL](state) {
+            state.deleteEnrolmentModal = !state.deleteEnrolmentModal;
+        },
+        [types.DELETE_ENROLMENT](state, payload) {
+            state.enrolments.splice(state.enrolments.findIndex(enrolment => enrolment.id === payload), 1);
+            state.deleteEnrolmentModal = false;
+        }
     },
     actions: {
         fetchEnrolment({commit, state}, id) {
             // find the enrolment in enrolments with a given id
             commit(types.FETCH_ENROLMENT, state.enrolments.find(enrolment => enrolment.id === id));
+        },
+        toggleDeleteEnrolmentModal({commit}) {
+            commit(types.TOGGLE_DELETE_ENROLMENT_MODAL);
+        },
+        deleteEnrolment({commit}, id) {
+            commit(types.DELETE_ENROLMENT, id);
+
+            // TODO: api
         }
     }
 }

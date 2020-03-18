@@ -3,9 +3,9 @@
         <!--        <EditCourse v-if="editCourseModal"-->
         <!--                    v-on:toggle-edit-course-modal="toggleEditCourseModal"/>-->
 
-        <!--        <DeleteCourse v-if="deleteCourseModal"-->
-        <!--                      v-on:toggle-delete-course-modal="toggleDeleteCourseModal"-->
-        <!--                      v-on:delete-course="deleteCourse"/>-->
+        <DeleteEnrolment v-if="deleteEnrolmentModal"
+                         v-on:toggle-delete-enrolment-modal="toggleDeleteEnrolmentModal"
+                         v-on:delete-enrolment="deleteEnrolment"/>
 
         <header class="bg-white border-b-2 border-gray-200">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 h-18">
@@ -32,7 +32,7 @@
                                 </button>
                                 <button type="button"
                                         class="ml-4 text-red-600 hover:text-red-900 font-semibold focus:outline-none focus:underline"
-                                        @click.prevent="">Delete
+                                        @click.prevent="toggleDeleteEnrolmentModal">Delete
                                 </button>
                             </div>
                         </div>
@@ -91,35 +91,32 @@
     import Dashboard from "../../layouts/Dashboard";
     import {mapGetters, mapActions} from "vuex";
     // import EditCourse from "./EditCourse";
-    // import DeleteCourse from "./DeleteCourse";
+    import DeleteEnrolment from "./DeleteEnrolment";
 
     export default {
         name: "Enrolment",
         components: {
-            // EditCourse,
-            // DeleteCourse
+            DeleteEnrolment
         },
         created() {
             this.$emit("update:layout", Dashboard);
             this.$store.dispatch('enrolments/fetchEnrolment', this.$route.params.id);
         },
         methods: {
-            // deleteCourse() {
-            //     this.$store.dispatch('courses/deleteCourse', this.$route.params.id)
-            //         .then(() => {
-            //             this.$router.push('/courses');
-            //         });
-            // },
-            // ...mapActions('courses', [
-            //     'toggleEditCourseModal',
-            //     'toggleDeleteCourseModal'
-            // ])
+            deleteEnrolment() {
+                this.$store.dispatch('enrolments/deleteEnrolment', this.$route.params.id)
+                    .then(() => {
+                        this.$router.push('/enrolments');
+                    });
+            },
+            ...mapActions('enrolments', [
+                'toggleDeleteEnrolmentModal'
+            ])
         },
         computed: {
             ...mapGetters('enrolments', [
                 'enrolment',
-                // 'editCourseModal',
-                // 'deleteCourseModal'
+                'deleteEnrolmentModal'
             ])
         },
     }
