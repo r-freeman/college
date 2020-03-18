@@ -59,7 +59,10 @@
                                         Status
                                     </dt>
                                     <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                        {{ enrolment.status }}
+                                        <div class="text-xs font-bold rounded-full text-center uppercase py-1 px-3 inline"
+                                             :class="[enrolment.status === 'interested' ? 'bg-green-100 text-green-400' : '']">
+                                            {{ enrolment.status }}
+                                        </div>
                                     </dd>
                                 </div>
                                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

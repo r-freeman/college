@@ -21,7 +21,8 @@
             </div>
         </td>
         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-            <div class="text-sm leading-5 font-medium text-gray-900">
+            <div class="text-xs font-bold rounded-full text-center uppercase py-1 px-3 inline"
+                 :class="[enrolment.status === 'interested' ? 'bg-green-100 text-green-400' : '']">
                 {{ enrolment.status }}
             </div>
         </td>
