@@ -1,0 +1,89 @@
+<template>
+    <div>
+        <!--        <AddCourse v-if="addCourseModal"-->
+        <!--                   v-on:toggle-add-course-modal="toggleAddCourseModal"/>-->
+
+        <header class="bg-white border-b-2 border-gray-200">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 h-18">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-bold leading-tight text-gray-900">
+                        Lecturers
+                    </h2>
+                    <button type="button"
+                            @click=""
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none transition duration-150 ease-in-out">
+                        Add Lecturer
+                    </button>
+                </div>
+            </div>
+        </header>
+        <div class="w-full h-screen bg-whitesmoke">
+            <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                <div class="px-4 py-6 sm:px-0">
+                    <div>
+                        <div class="flex flex-col">
+                            <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                                <p v-if="!lecturers.length" class="text-sm font-medium text-center text-gray-500">No
+                                    Lecturers</p>
+                                <div v-else
+                                     class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg">
+                                    <table class="min-w-full">
+                                        <thead>
+                                        <tr>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                Name
+                                            </th>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                Address
+                                            </th>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                Email
+                                            </th>
+                                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                                Phone
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="bg-white">
+                                        <Lecturer v-for="lecturer in lecturers"
+                                                  :lecturer="lecturer"
+                                                  :key="lecturer.id"/>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import Dashboard from "../../layouts/Dashboard";
+    import Lecturer from "../../components/Lecturer";
+    import {mapGetters} from "vuex";
+
+    export default {
+        name: "Lecturers",
+        components: {
+            Lecturer
+        },
+        data() {
+            return {}
+        },
+        created() {
+            this.$emit("update:layout", Dashboard);
+        },
+        computed: {
+            ...mapGetters('lecturers', [
+                'lecturers'
+            ])
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

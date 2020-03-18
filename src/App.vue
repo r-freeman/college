@@ -14,7 +14,7 @@
             }
         },
         created() {
-            this.$router.push('/enrolments');
+            this.$router.push('/lecturers');
         }
     }
 </script>

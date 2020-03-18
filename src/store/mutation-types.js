@@ -28,7 +28,10 @@ export const SET_TIME = 'SET_TIME';
 export const SET_STATUS = 'SET_STATUS';
 export const SET_COURSE_ID = 'SET_COURSE_ID';
 export const SET_LECTURER_ID = 'SET_LECTURER_ID';
-
 export const TOGGLE_DELETE_ENROLMENT_MODAL = 'TOGGLE_DELETE_ENROLMENT_MODAL';
 export const DELETE_ENROLMENT = 'DELETE_ENROLMENT';
+
+// lecturers.js
+export const FETCH_LECTURER = 'FETCH_LECTURER';
+export const FETCH_LECTURERS = 'FETCH_LECTURERS';
 

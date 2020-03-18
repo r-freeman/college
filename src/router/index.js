@@ -6,7 +6,8 @@ import Courses from "../views/courses/Courses";
 import Course from "../views/courses/Course";
 import Enrolments from "../views/enrolments/Enrolments";
 import Enrolment from "../views/enrolments/Enrolment";
-import Lecturers from "../views/Lecturers";
+import Lecturers from "../views/lecturers/Lecturers";
+import Lecturer from "../views/lecturers/Lecturer";
 
 import Login from "../views/Login";
 import Register from "../views/Register";
@@ -43,6 +44,11 @@ const routes = [
         path: '/lecturers',
         name: 'Lecturers',
         component: Lecturers
+    },
+    {
+        path: '/lecturers/:id',
+        name: 'viewLecturer',
+        component: Lecturer
     },
     {
         path: '/login',
