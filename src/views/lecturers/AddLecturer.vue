@@ -18,7 +18,7 @@
                                     Add Lecturer
                                 </h3>
                                 <div class="my-4 text-left">
-                                    <ValidationProvider rules="required" v-slot="{ valid, errors }">
+                                    <ValidationProvider rules="required|max:50" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="name"
                                                    class="block text-sm leading-5 font-semibold text-gray-700">Name</label>
@@ -35,7 +35,7 @@
                                                 {{errors[0]}}</p>
                                         </div>
                                     </ValidationProvider>
-                                    <ValidationProvider rules="required" v-slot="{ valid, errors }">
+                                    <ValidationProvider rules="required|max:100" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="address"
                                                    class="block text-sm leading-5 font-semibold text-gray-700">Address</label>
@@ -53,7 +53,7 @@
                                                 {{errors[0]}}</p>
                                         </div>
                                     </ValidationProvider>
-                                    <ValidationProvider rules="required" v-slot="{ valid, errors }">
+                                    <ValidationProvider rules="required|email|max:50" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="email"
                                                    class="block text-sm leading-5 font-semibold text-gray-700">Email</label>
@@ -70,7 +70,7 @@
                                                 {{errors[0]}}</p>
                                         </div>
                                     </ValidationProvider>
-                                    <ValidationProvider rules="required"
+                                    <ValidationProvider rules="required|max:20"
                                                         v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="phone"
