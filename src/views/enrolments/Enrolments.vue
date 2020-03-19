@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!--        <AddCourse v-if="addCourseModal"-->
-        <!--                   v-on:toggle-add-course-modal="toggleAddCourseModal"/>-->
+        <AddEnrolment v-if="addEnrolmentModal"
+                      v-on:toggle-add-enrolment-modal="toggleAddEnrolmentModal"/>
 
         <header class="bg-white border-b-2 border-gray-200">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 h-18">
@@ -10,7 +10,7 @@
                         Enrolments
                     </h2>
                     <button type="button"
-                            @click=""
+                            @click="toggleAddEnrolmentModal"
                             class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none transition duration-150 ease-in-out">
                         Add Enrolment
                     </button>
@@ -66,12 +66,14 @@
 <script>
     import Dashboard from "../../layouts/Dashboard";
     import Enrolment from "../../components/Enrolment";
-    import {mapGetters} from "vuex";
+    import AddEnrolment from "./AddEnrolment";
+    import {mapGetters, mapActions} from "vuex";
 
     export default {
         name: "Enrolments",
         components: {
-            Enrolment
+            Enrolment,
+            AddEnrolment
         },
         data() {
             return {}
@@ -79,9 +81,13 @@
         created() {
             this.$emit("update:layout", Dashboard);
         },
+        methods: {
+            ...mapActions('enrolments', ['toggleAddEnrolmentModal'])
+        },
         computed: {
             ...mapGetters('enrolments', [
-                'enrolments'
+                'enrolments',
+                'addEnrolmentModal'
             ])
         }
     }

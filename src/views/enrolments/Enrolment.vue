@@ -51,7 +51,7 @@
                                         Time
                                     </dt>
                                     <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                        {{ [enrolment.time, "hh:mm:ss"] | moment("hh:mm A") }}
+                                        {{ [enrolment.time, ["hh:mm:ss", "HH:mm"] ] | moment("hh:mm A") }}
                                     </dd>
                                 </div>
                                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -59,9 +59,9 @@
                                         Status
                                     </dt>
                                     <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                        <div class="text-xs font-bold rounded-full text-center uppercase py-1 px-3 inline"
-                                             :class="[enrolment.status === 'interested' ? 'bg-green-100 text-green-400' : '']">
-                                            {{ enrolment.status }}
+                                        <div class="text-xs font-bold rounded-full text-center uppercase py-1 px-3 inline antialiased"
+                                             :class="enrolmentStatus(enrolment.status)">
+                                            {{ enrolment.status.replace("_", " ") }}
                                         </div>
                                     </dd>
                                 </div>
@@ -92,12 +92,19 @@
 
 <script>
     import Dashboard from "../../layouts/Dashboard";
-    import {mapGetters, mapActions} from "vuex";
-    // import EditCourse from "./EditCourse";
     import DeleteEnrolment from "./DeleteEnrolment";
+    import {mapGetters, mapActions} from "vuex";
 
     export default {
         name: "Enrolment",
+        data() {
+            return {
+                interestedClass: 'interested',
+                assignedClass: 'assigned',
+                associateClass: 'associate',
+                careerBreakClass: 'career-break'
+            }
+        },
         components: {
             DeleteEnrolment
         },
@@ -106,6 +113,17 @@
             this.$store.dispatch('enrolments/fetchEnrolment', this.$route.params.id);
         },
         methods: {
+            enrolmentStatus(status) {
+                if (status === 'interested') {
+                    return this.interestedClass;
+                } else if (status === 'assigned') {
+                    return this.assignedClass;
+                } else if (status === 'associate') {
+                    return this.associateClass;
+                } else if (status === 'career_break') {
+                    return this.careerBreakClass;
+                }
+            },
             deleteEnrolment() {
                 this.$store.dispatch('enrolments/deleteEnrolment', this.$route.params.id)
                     .then(() => {
@@ -126,5 +144,19 @@
 </script>
 
 <style scoped>
+    .interested {
+        @apply bg-blue-100 text-blue-400
+    }
 
+    .assigned {
+        @apply bg-green-100 text-green-400
+    }
+
+    .associate {
+        @apply bg-teal-100 text-teal-400
+    }
+
+    .career-break {
+        @apply bg-orange-100 text-orange-400
+    }
 </style>

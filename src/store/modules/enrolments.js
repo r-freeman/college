@@ -4,6 +4,11 @@ export default {
     namespaced: true,
     state: {
         enrolment: {},
+        date: null,
+        time: null,
+        status: "",
+        courseId: null,
+        lecturerId: null,
         enrolments: [
             {
                 "id": 1,
@@ -29,6 +34,7 @@ export default {
                 }
             }
         ],
+        addEnrolmentModal: false,
         deleteEnrolmentModal: false
     },
     getters: {
@@ -38,6 +44,9 @@ export default {
         enrolments: state => {
             return state.enrolments;
         },
+        addEnrolmentModal: state => {
+            return state.addEnrolmentModal;
+        },
         deleteEnrolmentModal: state => {
             return state.deleteEnrolmentModal;
         }
@@ -45,6 +54,34 @@ export default {
     mutations: {
         [types.FETCH_ENROLMENT](state, payload) {
             state.enrolment = payload;
+        },
+        [types.TOGGLE_ADD_ENROLMENT_MODAL](state) {
+            state.addEnrolmentModal = !state.addEnrolmentModal;
+
+            if (!state.addEnrolmentModal) {
+                // reset form if add enrolment was cancelled
+                state.date = state.time = state.courseId = state.lecturerId = null;
+                state.status = "";
+            }
+        },
+        [types.ADD_ENROLMENT](state, payload) {
+            // add new enrolment to enrolments
+            state.enrolments.push(payload);
+        },
+        [types.SET_DATE](state, payload) {
+            state.date = payload;
+        },
+        [types.SET_TIME](state, payload) {
+            state.time = payload;
+        },
+        [types.SET_STATUS](state, payload) {
+            state.status = payload;
+        },
+        [types.SET_COURSE_ID](state, payload) {
+            state.courseId = payload
+        },
+        [types.SET_LECTURER_ID](state, payload) {
+            state.lecturerId = payload;
         },
         [types.TOGGLE_DELETE_ENROLMENT_MODAL](state) {
             state.deleteEnrolmentModal = !state.deleteEnrolmentModal;
@@ -58,6 +95,26 @@ export default {
         fetchEnrolment({commit, state}, id) {
             // find the enrolment in enrolments with a given id
             commit(types.FETCH_ENROLMENT, state.enrolments.find(enrolment => enrolment.id === id));
+        },
+        toggleAddEnrolmentModal({commit}) {
+            commit(types.TOGGLE_ADD_ENROLMENT_MODAL);
+        },
+        addEnrolment({commit, state, dispatch, rootState}) {
+            let enrolment = {
+                id: Math.max.apply(null, state.enrolments.map(t => t.id)) + 1,
+                date: state.date,
+                time: state.time,
+                status: state.status,
+                course_id: state.courseId,
+                lecturer_id: state.lecturerId,
+                course: rootState.courses.courses.find(course => course.id === state.courseId),
+                lecturer: rootState.lecturers.lecturers.find(lecturer => lecturer.id === state.lecturerId)
+            };
+
+            commit(types.ADD_ENROLMENT, enrolment);
+            dispatch('toggleAddEnrolmentModal');
+
+            // TODO: api
         },
         toggleDeleteEnrolmentModal({commit}) {
             commit(types.TOGGLE_DELETE_ENROLMENT_MODAL);
