@@ -5,6 +5,8 @@ import store from './store'
 import './vee-validate';
 import moment from 'vue-moment';
 
+require('typeface-nunito-sans');
+
 Vue.config.productionTip = false;
 Vue.use(moment);
 

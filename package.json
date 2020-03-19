@@ -13,6 +13,7 @@
     "lodash": "^4.17.15",
     "minimist": "^1.2.2",
     "tailwindcss": "^1.2.0",
+    "typeface-nunito-sans": "^0.0.72",
     "vee-validate": "^3.2.5",
     "vue": "^2.6.11",
     "vue-moment": "^4.1.0",
