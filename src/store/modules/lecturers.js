@@ -1,9 +1,11 @@
 import * as types from "../mutation-types";
+import _ from "lodash";
 
 export default {
     namespaced: true,
     state: {
         lecturer: {},
+        _lecturer: {},
         name: "",
         address: "",
         email: "",
@@ -466,6 +468,7 @@ export default {
             }
         ],
         addLecturerModal: false,
+        editLecturerModal: false,
         deleteLecturerModal: false
     },
     getters: {
@@ -477,6 +480,9 @@ export default {
         },
         addLecturerModal: state => {
             return state.addLecturerModal;
+        },
+        editLecturerModal: state => {
+            return state.editLecturerModal;
         },
         deleteLecturerModal: state => {
             return state.deleteLecturerModal;
@@ -498,6 +504,20 @@ export default {
             // add new lecturer to lecturers
             state.lecturers.push(payload);
         },
+        [types.TOGGLE_EDIT_LECTURER_MODAL](state) {
+            state.editLecturerModal = !state.editLecturerModal;
+
+            if (state.editLecturerModal) {
+                // make a copy of the lecturer
+                state._lecturer = _.clone(state.lecturer);
+            } else {
+                state._lecturer = {};
+            }
+        },
+        [types.EDIT_LECTURER](state, payload) {
+            // replace the original course with the updated course
+            _.assign(state.lecturer, state._lecturer);
+        },
         [types.SET_NAME](state, payload) {
             state.name = payload;
         },
@@ -509,6 +529,18 @@ export default {
         },
         [types.SET_PHONE](state, payload) {
             state.phone = payload;
+        },
+        [types.EDIT_LECTURER_NAME](state, payload) {
+            state._lecturer.name = payload;
+        },
+        [types.EDIT_LECTURER_ADDRESS](state, payload) {
+            state._lecturer.address = payload;
+        },
+        [types.EDIT_LECTURER_EMAIL](state, payload) {
+            state._lecturer.email = payload;
+        },
+        [types.EDIT_LECTURER_PHONE](state, payload) {
+            state._lecturer.phone = payload;
         },
         [types.TOGGLE_DELETE_LECTURER_MODAL](state) {
             state.deleteLecturerModal = !state.deleteLecturerModal;
@@ -539,6 +571,20 @@ export default {
             dispatch('toggleAddLecturerModal');
 
             // TODO: api
+        },
+        toggleEditLecturerModal({commit}) {
+            commit(types.TOGGLE_EDIT_LECTURER_MODAL);
+        },
+        editLecturer({commit, state, dispatch}) {
+            commit(types.EDIT_LECTURER);
+
+            // const {title, code, description, points, level} = state._course;
+
+            dispatch('toggleEditLecturerModal');
+
+            // TODO: refactor code here to make put request to api with updated lecturer.
+            //  If api responds with status 200, commit edit lecturer mutation with the response data
+            //  containing the updated lecturer. Do the same for adding and deleting lecturers.
         },
         toggleDeleteLecturerModal({commit}) {
             commit(types.TOGGLE_DELETE_LECTURER_MODAL);

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <!--        <EditCourse v-if="editCourseModal"-->
-        <!--                    v-on:toggle-edit-course-modal="toggleEditCourseModal"/>-->
+        <EditLecturer v-if="editLecturerModal"
+                      v-on:toggle-edit-lecturer-modal="toggleEditLecturerModal"/>
 
         <DeleteLecturer v-if="deleteLecturerModal"
                         v-on:toggle-delete-lecturer-modal="toggleDeleteLecturerModal"
@@ -27,7 +27,7 @@
                             <div>
                                 <button type="button"
                                         class="text-indigo-600 hover:text-indigo-900 font-semibold focus:outline-none focus:underline"
-                                        @click.prevent="">
+                                        @click.prevent="toggleEditLecturerModal">
                                     Edit
                                 </button>
                                 <button type="button"
@@ -82,11 +82,13 @@
 <script>
     import Dashboard from "../../layouts/Dashboard";
     import {mapGetters, mapActions} from "vuex";
+    import EditLecturer from "./EditLecturer";
     import DeleteLecturer from "./DeleteLecturer";
 
     export default {
         name: "Lecturer",
         components: {
+            EditLecturer,
             DeleteLecturer
         },
         created() {
@@ -101,12 +103,14 @@
                     });
             },
             ...mapActions('lecturers', [
+                'toggleEditLecturerModal',
                 'toggleDeleteLecturerModal'
             ])
         },
         computed: {
             ...mapGetters('lecturers', [
                 'lecturer',
+                'editLecturerModal',
                 'deleteLecturerModal'
             ])
         },
