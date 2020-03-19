@@ -4,6 +4,10 @@ export default {
     namespaced: true,
     state: {
         lecturer: {},
+        name: "",
+        address: "",
+        email: "",
+        phone: "",
         lecturers: [
             {
                 "id": 1,
@@ -461,6 +465,7 @@ export default {
                 ]
             }
         ],
+        addLecturerModal: false,
         deleteLecturerModal: false
     },
     getters: {
@@ -470,6 +475,9 @@ export default {
         lecturers: state => {
             return state.lecturers;
         },
+        addLecturerModal: state => {
+            return state.addLecturerModal;
+        },
         deleteLecturerModal: state => {
             return state.deleteLecturerModal;
         }
@@ -477,6 +485,30 @@ export default {
     mutations: {
         [types.FETCH_LECTURER](state, payload) {
             state.lecturer = payload;
+        },
+        [types.TOGGLE_ADD_LECTURER_MODAL](state) {
+            state.addLecturerModal = !state.addLecturerModal;
+
+            if (!state.addLecturerModal) {
+                // reset form if add lecturer was cancelled
+                state.name = state.address = state.email = state.phone = "";
+            }
+        },
+        [types.ADD_LECTURER](state, payload) {
+            // add new lecturer to lecturers
+            state.lecturers.push(payload);
+        },
+        [types.SET_NAME](state, payload) {
+            state.name = payload;
+        },
+        [types.SET_ADDRESS](state, payload) {
+            state.address = payload;
+        },
+        [types.SET_EMAIL](state, payload) {
+            state.email = payload;
+        },
+        [types.SET_PHONE](state, payload) {
+            state.phone = payload;
         },
         [types.TOGGLE_DELETE_LECTURER_MODAL](state) {
             state.deleteLecturerModal = !state.deleteLecturerModal;
@@ -490,6 +522,23 @@ export default {
         fetchLecturer({commit, state}, id) {
             // find the lecturer in lecturers with a given id
             commit(types.FETCH_LECTURER, state.lecturers.find(lecturer => lecturer.id === id));
+        },
+        toggleAddLecturerModal({commit}) {
+            commit(types.TOGGLE_ADD_LECTURER_MODAL);
+        },
+        addLecturer({commit, state, dispatch}) {
+            let lecturer = {
+                id: Math.max.apply(null, state.lecturers.map(t => t.id)) + 1,
+                name: state.name,
+                address: state.address,
+                email: state.email,
+                phone: state.phone
+            };
+
+            commit(types.ADD_LECTURER, lecturer);
+            dispatch('toggleAddLecturerModal');
+
+            // TODO: api
         },
         toggleDeleteLecturerModal({commit}) {
             commit(types.TOGGLE_DELETE_LECTURER_MODAL);

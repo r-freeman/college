@@ -1,16 +1,16 @@
 <template>
     <div>
-        <!--        <AddCourse v-if="addCourseModal"-->
-        <!--                   v-on:toggle-add-course-modal="toggleAddCourseModal"/>-->
+        <AddLecturer v-if="addLecturerModal"
+                     v-on:toggle-add-lecturer-modal="toggleAddLecturerModal"/>
 
         <header class="bg-white border-b-2 border-gray-200">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 h-18">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-lg font-bold leading-tight text-gray-900">
+                    <h2 class="text-lg font-semibold leading-tight text-gray-900">
                         Lecturers
                     </h2>
                     <button type="button"
-                            @click=""
+                            @click="toggleAddLecturerModal"
                             class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none transition duration-150 ease-in-out">
                         Add Lecturer
                     </button>
@@ -63,22 +63,27 @@
 <script>
     import Dashboard from "../../layouts/Dashboard";
     import Lecturer from "../../components/Lecturer";
-    import {mapGetters} from "vuex";
+    import AddLecturer from "./AddLecturer";
+    import {mapGetters, mapActions} from "vuex";
 
     export default {
         name: "Lecturers",
         components: {
+            AddLecturer,
             Lecturer
-        },
-        data() {
-            return {}
         },
         created() {
             this.$emit("update:layout", Dashboard);
         },
         computed: {
             ...mapGetters('lecturers', [
-                'lecturers'
+                'lecturers',
+                'addLecturerModal'
+            ])
+        },
+        methods: {
+            ...mapActions('lecturers', [
+                'toggleAddLecturerModal'
             ])
         }
     }
