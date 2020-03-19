@@ -11,22 +11,22 @@
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline">
                             <router-link to="/home"
-                                         class="px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
+                                         class="px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
                                          :class="[currentPage.includes('home') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Home
                             </router-link>
                             <router-link to="/courses"
-                                         class="ml-4 px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
+                                         class="ml-4 px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
                                          :class="[currentPage.includes('course') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Courses
                             </router-link>
                             <router-link to="/enrolments"
-                                         class="ml-4 px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
+                                         class="ml-4 px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
                                          :class="[currentPage.includes('enrolment') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Enrolments
                             </router-link>
                             <router-link to="/lecturers"
-                                         class="ml-4 px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
+                                         class="ml-4 px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
                                          :class="[currentPage.includes('lecturer') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Lecturers
                             </router-link>
@@ -36,12 +36,12 @@
                 <div class="hidden md:block">
                     <div class="ml-4 flex items-center md:ml-6">
                         <router-link to="/login"
-                                     class="px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
+                                     class="px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
                                      :class="[currentPage.includes('login') ? activeClass : 'text-tropicalblue hover:text-white']">
                             John Smith
                         </router-link>
                         <router-link to="/register"
-                                     class="px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-white"
+                                     class="px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
                                      :class="[currentPage.includes('register') ? activeClass : 'text-tropicalblue hover:text-white']">
                             Log Out
                         </router-link>
