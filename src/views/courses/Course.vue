@@ -10,7 +10,7 @@
         <header class="bg-white border-b-2 border-gray-200">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 h-18">
                 <div class="flex items-center">
-                    <h2 class="text-lg font-bold leading-tight text-gray-900">
+                    <h2 class="text-lg font-semibold leading-tight text-gray-900">
                         View Course
                     </h2>
                 </div>
@@ -21,7 +21,7 @@
                 <div class="px-4 py-6 sm:px-0">
                     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
                         <div class="flex justify-between items-center px-4 py-5 border-b border-gray-200 sm:px-6">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            <h3 class="text-lg leading-6 font-semibold text-gray-900">
                                 Course
                             </h3>
                             <div>

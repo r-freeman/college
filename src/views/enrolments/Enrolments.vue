@@ -6,7 +6,7 @@
         <header class="bg-white border-b-2 border-gray-200">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 h-18">
                 <div class="flex justify-between items-center">
-                    <h2 class="text-lg font-bold leading-tight text-gray-900">
+                    <h2 class="text-lg font-semibold leading-tight text-gray-900">
                         Enrolments
                     </h2>
                     <button type="button"
@@ -74,9 +74,6 @@
         components: {
             Enrolment,
             AddEnrolment
-        },
-        data() {
-            return {}
         },
         created() {
             this.$emit("update:layout", Dashboard);

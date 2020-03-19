@@ -14,14 +14,14 @@
                                 <Add class="h-5 w-5 fill-current text-green-500"/>
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full sm:w-2/3">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                <h3 class="text-lg leading-6 font-semibold text-gray-900">
                                     Add Enrolment
                                 </h3>
                                 <div class="my-4 text-left">
                                     <ValidationProvider rules="required" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="date"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Date</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Date</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input v-model="date" id="date" type="date"
                                                        class="form-input date-picker block w-full pl-3 pr-2 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
@@ -34,7 +34,7 @@
                                     <ValidationProvider rules="required" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="time"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Time</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Time</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input v-model="time" id="time" type="time"
                                                        class="form-input block w-full pl-3 pr-3 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
@@ -47,7 +47,7 @@
                                     <ValidationProvider rules="required" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="status"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Status</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Status</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <select v-model="status"
                                                         class="form-select block w-full px-3 sm:text-sm sm:leading-5 resize-none text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
@@ -68,7 +68,7 @@
                                                         v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="course"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Course</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Course</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <select v-model="course"
                                                         class="form-select block w-full pl-3 pr-12 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"

@@ -14,14 +14,14 @@
                                 <Edit class="h-6 w-6 p-1 fill-current text-indigo-500"/>
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full sm:w-2/3">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                <h3 class="text-lg leading-6 font-semibold text-gray-900">
                                     Edit Course
                                 </h3>
                                 <div class="my-4 text-left">
                                     <ValidationProvider rules="required|alpha_spaces|max:50" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="title"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Title</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Title</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input v-model="title" id="title"
                                                        class="form-input block w-full pl-3 pr-8 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
@@ -38,7 +38,7 @@
                                     <ValidationProvider rules="required|alpha_num|max:5" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="code"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Code</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Code</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input v-model="code" id="code"
                                                        class="form-input block w-full pl-3 pr-12 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
@@ -55,7 +55,7 @@
                                     <ValidationProvider rules="required" v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="description"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Description</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Description</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <textarea v-model="description"
                                                           class="form-input block w-full px-3 sm:text-sm sm:leading-5 resize-none text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
@@ -72,7 +72,7 @@
                                                         v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="points"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Points</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Points</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input v-model="points" id="points"
                                                        class="form-input block w-full pl-3 pr-12 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
@@ -90,7 +90,7 @@
                                                         v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="level"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Level</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Level</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <input v-model="level" id="level"
                                                        class="form-input block w-full pl-3 pr-12 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
