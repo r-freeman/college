@@ -4,9 +4,7 @@
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <div class="h-8 w-8 bg-white">
-
-                        </div>
+                        <Education class="w-8 h-8 text-white fill-current"/>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline">
@@ -53,8 +51,13 @@
 </template>
 
 <script>
+    import Education from "../assets/svg/Education";
+
     export default {
         name: "Header",
+        components: {
+            Education
+        },
         data() {
             return {
                 activeClass: 'active'
