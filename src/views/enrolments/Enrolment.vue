@@ -1,8 +1,7 @@
 <template>
     <div>
-        <!--        <EditCourse v-if="editCourseModal"-->
-        <!--                    v-on:toggle-edit-course-modal="toggleEditCourseModal"/>-->
-
+        <EditEnrolment v-if="editEnrolmentModal"
+                       v-on:toggle-edit-enrolment-modal="toggleEditEnrolmentModal"/>
         <DeleteEnrolment v-if="deleteEnrolmentModal"
                          v-on:toggle-delete-enrolment-modal="toggleDeleteEnrolmentModal"
                          v-on:delete-enrolment="deleteEnrolment"/>
@@ -27,7 +26,7 @@
                             <div>
                                 <button type="button"
                                         class="text-indigo-600 hover:text-indigo-900 font-semibold focus:outline-none focus:underline"
-                                        @click.prevent="">
+                                        @click.prevent="toggleEditEnrolmentModal">
                                     Edit
                                 </button>
                                 <button type="button"
@@ -92,6 +91,7 @@
 
 <script>
     import Dashboard from "../../layouts/Dashboard";
+    import EditEnrolment from "./EditEnrolment";
     import DeleteEnrolment from "./DeleteEnrolment";
     import {mapGetters, mapActions} from "vuex";
 
@@ -106,6 +106,7 @@
             }
         },
         components: {
+            EditEnrolment,
             DeleteEnrolment
         },
         created() {
@@ -131,12 +132,14 @@
                     });
             },
             ...mapActions('enrolments', [
+                'toggleEditEnrolmentModal',
                 'toggleDeleteEnrolmentModal'
             ])
         },
         computed: {
             ...mapGetters('enrolments', [
                 'enrolment',
+                'editEnrolmentModal',
                 'deleteEnrolmentModal'
             ])
         },

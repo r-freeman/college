@@ -2,12 +2,12 @@
     <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-start sm:justify-center sm:my-24">
         <div class="fixed inset-0 transition-opacity">
             <div class="absolute inset-0 bg-black opacity-25"
-                 @click="toggleAddEnrolmentModal"></div>
+                 @click="toggleEditEnrolmentModal"></div>
         </div>
 
         <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <ValidationObserver ref="observer" v-slot="{ passes, invalid, changed}">
-                <form @submit.prevent="passes(addEnrolment)">
+                <form @submit.prevent="passes(editEnrolment)">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
                             <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -15,7 +15,7 @@
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full sm:w-2/3">
                                 <h3 class="text-lg leading-6 font-semibold text-gray-900">
-                                    Add Enrolment
+                                    Edit Enrolment
                                 </h3>
                                 <div class="my-4 text-left">
                                     <ValidationProvider rules="required" v-slot="{ valid, errors }">
@@ -70,7 +70,7 @@
                                             <label for="course"
                                                    class="block text-sm leading-5 font-semibold text-gray-700">Course</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
-                                                <select v-model="course"
+                                                <select v-model="_course"
                                                         class="form-select block w-full pl-3 pr-12 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
                                                         :class="[valid ? validClass : errors[0] ? errorClass : '']"
                                                         name="course"
@@ -91,7 +91,7 @@
                                             <label for="lecturer"
                                                    class="block text-sm leading-5 font-medium text-gray-700">Lecturer</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
-                                                <select v-model="lecturer"
+                                                <select v-model="_lecturer"
                                                         class="form-select block w-full pl-3 pr-12 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"
                                                         :class="[valid ? validClass : errors[0] ? errorClass : '']"
                                                         name="lecturer"
@@ -120,7 +120,7 @@
                             </button>
                         </span>
                         <span class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto">
-                            <button @click="toggleAddEnrolmentModal" type="button"
+                            <button @click="toggleEditEnrolmentModal" type="button"
                                     class="inline-flex select-none justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline transition ease-in-out duration-150 sm:text-sm sm:leading-5">
                             Cancel
                             </button>
@@ -158,42 +158,42 @@
         computed: {
             date: {
                 get() {
-                    return this.$store.state.enrolments.date;
+                    return this.$store.state.enrolments._enrolment.date;
                 },
                 set(val) {
-                    this.$store.commit('enrolments/SET_DATE', val);
+                    this.$store.commit('enrolments/EDIT_ENROLMENT_DATE', val);
                 }
             },
             time: {
                 get() {
-                    return this.$store.state.enrolments.time;
+                    return this.$store.state.enrolments._enrolment.time;
                 },
                 set(val) {
-                    this.$store.commit('enrolments/SET_TIME', val);
+                    this.$store.commit('enrolments/EDIT_ENROLMENT_TIME', val);
                 }
             },
             status: {
                 get() {
-                    return this.$store.state.enrolments.status;
+                    return this.$store.state.enrolments._enrolment.status;
                 },
                 set(val) {
-                    this.$store.commit('enrolments/SET_STATUS', val);
+                    this.$store.commit('enrolments/EDIT_ENROLMENT_STATUS', val);
                 }
             },
-            course: {
+            _course: {
                 get() {
-                    return this.$store.state.enrolments.course_id;
+                    return this.$store.state.enrolments._enrolment.course_id;
                 },
                 set(val) {
-                    this.$store.commit('enrolments/SET_COURSE_ID', val);
+                    this.$store.commit('enrolments/EDIT_ENROLMENT_COURSE_ID', val);
                 }
             },
-            lecturer: {
+            _lecturer: {
                 get() {
-                    return this.$store.state.enrolments.lecturer_id;
+                    return this.$store.state.enrolments._enrolment.lecturer_id;
                 },
                 set(val) {
-                    this.$store.commit('enrolments/SET_LECTURER_ID', val);
+                    this.$store.commit('enrolments/EDIT_ENROLMENT_LECTURER_ID', val);
                 }
             },
             ...mapGetters('courses', [
@@ -204,11 +204,11 @@
             ])
         },
         methods: {
-            toggleAddEnrolmentModal() {
-                this.$emit('toggle-add-enrolment-modal');
+            toggleEditEnrolmentModal() {
+                this.$emit('toggle-edit-enrolment-modal');
             },
-            addEnrolment() {
-                this.$store.dispatch('enrolments/addEnrolment');
+            editEnrolment() {
+                this.$store.dispatch('enrolments/editEnrolment');
             }
         }
     }
