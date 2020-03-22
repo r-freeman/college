@@ -9,8 +9,8 @@ import Enrolment from "../views/enrolments/Enrolment";
 import Lecturers from "../views/lecturers/Lecturers";
 import Lecturer from "../views/lecturers/Lecturer";
 
-import Login from "../views/Login";
-import Register from "../views/Register";
+import Login from "../views/auth/Login";
+import Register from "../views/auth/Register";
 
 Vue.use(VueRouter);
 

@@ -518,16 +518,16 @@ export default {
             // replace the original course with the updated course
             _.assign(state.lecturer, state._lecturer);
         },
-        [types.SET_NAME](state, payload) {
+        [types.SET_LECTURER_NAME](state, payload) {
             state.name = payload;
         },
-        [types.SET_ADDRESS](state, payload) {
+        [types.SET_LECTURER_ADDRESS](state, payload) {
             state.address = payload;
         },
-        [types.SET_EMAIL](state, payload) {
+        [types.SET_LECTURER_EMAIL](state, payload) {
             state.email = payload;
         },
-        [types.SET_PHONE](state, payload) {
+        [types.SET_LECTURER_PHONE](state, payload) {
             state.phone = payload;
         },
         [types.EDIT_LECTURER_NAME](state, payload) {
