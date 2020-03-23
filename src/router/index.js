@@ -12,43 +12,66 @@ import Lecturer from "../views/lecturers/Lecturer";
 import Login from "../views/auth/Login";
 import Register from "../views/auth/Register";
 
+import tokenService from "../services/token";
+
 Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/home',
+        path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/courses',
         name: 'Courses',
-        component: Courses
+        component: Courses,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/courses/:id',
         name: 'viewCourse',
-        component: Course
+        component: Course,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/enrolments',
         name: 'Enrolments',
-        component: Enrolments
+        component: Enrolments,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/enrolments/:id',
         name: 'viewEnrolment',
-        component: Enrolment
+        component: Enrolment,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/lecturers',
         name: 'Lecturers',
-        component: Lecturers
+        component: Lecturers,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/lecturers/:id',
         name: 'viewLecturer',
-        component: Lecturer
+        component: Lecturer,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/login',
@@ -64,6 +87,23 @@ const routes = [
 
 const router = new VueRouter({
     routes
+});
+
+// navigation guard
+router.beforeEach((to, from, next) => {
+    // redirect to login if trying to access protected route
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        const token = tokenService.getToken();
+        if (!token) {
+            next({
+                path: '/login'
+            })
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
 });
 
 export default router

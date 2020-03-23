@@ -63,3 +63,7 @@ export const SET_PASSWORD = 'SET_PASSWORD';
 export const SET_CONFIRM = 'SET_CONFIRM';
 export const RESET_LOGIN = 'RESET_LOGIN';
 export const RESET_REGISTER = 'RESET_REGISTER';
+export const ATTEMPT_LOGIN = 'ATTEMPT_LOGIN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const SET_TOKEN = 'SET_TOKEN';

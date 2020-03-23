@@ -1,5 +1,6 @@
 <template>
     <div class="max-w-md w-full">
+        <Notification/>
         <div>
             <Education class="mx-auto w-16 h-16 fill-current text-iris"/>
             <h3 class="mt-6 text-center text-2xl font-semibold text-gray-900">
@@ -16,7 +17,7 @@
         <ValidationObserver ref="observer" v-slot="{ passes, invalid, changed}">
             <form @submit.prevent="passes(login)" class="mt-8">
                 <div>
-                    <ValidationProvider mode="lazy" rules="required|email" v-slot="{ valid, errors }">
+                    <ValidationProvider rules="required|email" v-slot="{ valid, errors }">
                         <div class="mb-4">
                             <div class="relative">
                                 <input v-model="email" id="email"
@@ -32,7 +33,7 @@
                                 {{errors[0]}}</p>
                         </div>
                     </ValidationProvider>
-                    <ValidationProvider mode="lazy" rules="required" v-slot="{ valid, errors }">
+                    <ValidationProvider rules="required" v-slot="{ valid, errors }">
                         <div class="mb-4">
                             <div class="relative">
                                 <input v-model="password" id="password" type="password"
@@ -70,7 +71,8 @@
                             class="inline-flex bg-gray-400 select-none justify-center w-full rounded-md border border-transparent px-4 py-3 text-base leading-6 font-medium text-white shadow-sm focus:outline-none transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                             :class="[!invalid && changed ? enabledClass : '']"
                             :disabled="invalid">
-                        Sign In
+                        <TailSpin v-if="isLoggingIn" class="w-6 h-6 mx-auto"/>
+                        <span v-else class="block leading-relaxed w-full h-6">Sign In</span>
                     </button>
                 </div>
             </form>
@@ -80,10 +82,13 @@
 
 <script>
     import {ValidationObserver, ValidationProvider} from "vee-validate";
+    import {mapGetters} from "vuex";
     import Full from "../../layouts/Full";
     import Education from "../../assets/svg/Education";
     import Check from "../../assets/svg/Check";
     import Cross from "../../assets/svg/Cross";
+    import TailSpin from "../../assets/svg/TailSpin";
+    import Notification from "../../components/Notification";
 
     export default {
         name: "Login",
@@ -99,7 +104,9 @@
             ValidationProvider,
             Education,
             Check,
-            Cross
+            Cross,
+            TailSpin,
+            Notification
         },
         created() {
             this.$emit("update:layout", Full);
@@ -121,11 +128,18 @@
                 set(val) {
                     this.$store.commit('auth/SET_PASSWORD', val);
                 }
-            }
+            },
+            ...mapGetters('auth', [
+                'isLoggingIn'
+            ])
         },
         methods: {
             login() {
-                alert("hello");
+                this.$store.dispatch('auth/login')
+                    .then(() => {
+                        this.$router.push('/');
+                    }).catch(e => {
+                })
             }
         }
 

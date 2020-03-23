@@ -8,7 +8,7 @@
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline">
-                            <router-link to="/home"
+                            <router-link to="/"
                                          class="px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
                                          :class="[currentPage.includes('home') ? activeClass : 'text-tropicalblue hover:text-white']">
                                 Home
@@ -32,17 +32,15 @@
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
-                        <router-link to="/login"
-                                     class="px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
-                                     :class="[currentPage.includes('login') ? activeClass : 'text-tropicalblue hover:text-white']">
-                            John Smith
-                        </router-link>
-                        <router-link to="/register"
-                                     class="px-3 py-2 rounded-md text-sm font-semibold focus:outline-none focus:text-white"
-                                     :class="[currentPage.includes('register') ? activeClass : 'text-tropicalblue hover:text-white']">
-                            Log Out
-                        </router-link>
+                    <div>
+                        <div>
+                            <button @click="open = !open"
+                                    class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid">
+                                <img class="h-8 w-8 rounded-full"
+                                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                     alt=""/>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,6 +50,7 @@
 
 <script>
     import Education from "../assets/svg/Education";
+    import {mapGetters} from "vuex";
 
     export default {
         name: "Header",
@@ -66,7 +65,8 @@
         computed: {
             currentPage() {
                 return this.$route.name.toLowerCase();
-            }
+            },
+            ...mapGetters('auth', ['user'])
         }
     }
 </script>

@@ -12,9 +12,6 @@
             return {
                 layout: 'div'
             }
-        },
-        created() {
-            this.$router.push('/login');
         }
     }
 </script>
