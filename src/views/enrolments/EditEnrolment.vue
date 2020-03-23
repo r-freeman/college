@@ -89,7 +89,7 @@
                                                         v-slot="{ valid, errors }">
                                         <div class="mb-4">
                                             <label for="lecturer"
-                                                   class="block text-sm leading-5 font-medium text-gray-700">Lecturer</label>
+                                                   class="block text-sm leading-5 font-semibold text-gray-700">Lecturer</label>
                                             <div class="mt-1 relative rounded-md shadow-sm">
                                                 <select v-model="_lecturer"
                                                         class="form-select block w-full pl-3 pr-12 sm:text-sm sm:leading-5 text-gray-700 tracking-wide focus:shadow-none focus:outline-none"

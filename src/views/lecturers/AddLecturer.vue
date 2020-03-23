@@ -142,7 +142,7 @@
                     return this.$store.state.lecturers.name;
                 },
                 set(val) {
-                    this.$store.commit('lecturers/SET_NAME', val);
+                    this.$store.commit('lecturers/SET_LECTURER_NAME', val);
                 }
             },
             address: {
@@ -150,7 +150,7 @@
                     return this.$store.state.lecturers.address;
                 },
                 set(val) {
-                    this.$store.commit('lecturers/SET_ADDRESS', val);
+                    this.$store.commit('lecturers/SET_LECTURER_ADDRESS', val);
                 }
             },
             email: {
@@ -158,7 +158,7 @@
                     return this.$store.state.lecturers.email;
                 },
                 set(val) {
-                    this.$store.commit('lecturers/SET_EMAIL', val);
+                    this.$store.commit('lecturers/SET_LECTURER_EMAIL', val);
                 }
             },
             phone: {
@@ -166,7 +166,7 @@
                     return this.$store.state.lecturers.phone;
                 },
                 set(val) {
-                    this.$store.commit('lecturers/SET_PHONE', val);
+                    this.$store.commit('lecturers/SET_LECTURER_PHONE', val);
                 }
             }
         },
