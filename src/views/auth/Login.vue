@@ -1,6 +1,6 @@
 <template>
     <div class="max-w-md w-full">
-        <Notification/>
+        <!--        <Notification/>-->
         <div>
             <Education class="mx-auto w-16 h-16 fill-current text-iris"/>
             <h3 class="mt-6 text-center text-2xl font-semibold text-gray-900">
@@ -147,11 +147,11 @@
 </script>
 
 <style scoped>
-    .valid {
+    .valid, .valid:focus {
         @apply border-green-400
     }
 
-    .error {
+    .error, .error:focus {
         @apply border-red-400
     }
 

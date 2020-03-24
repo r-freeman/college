@@ -174,11 +174,11 @@
 </script>
 
 <style scoped>
-    .valid {
+    .valid, .valid:focus {
         @apply border-green-400
     }
 
-    .error {
+    .error, .error:focus {
         @apply border-red-400
     }
 
