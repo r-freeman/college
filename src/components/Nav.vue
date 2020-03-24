@@ -34,7 +34,7 @@
                 <div class="hidden md:block">
                     <div>
                         <div>
-                            <button @click="open = !open"
+                            <button @click="logout"
                                     class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid">
                                 <img class="h-8 w-8 rounded-full"
                                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -67,6 +67,15 @@
                 return this.$route.name.toLowerCase();
             },
             ...mapGetters('auth', ['user'])
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch('auth/logout')
+                    .then(() => {
+                        this.$router.push('/login');
+                    }).catch(e => {
+                })
+            }
         }
     }
 </script>

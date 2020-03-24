@@ -11,7 +11,8 @@ export default {
         password: "",
         confirm: "",
         isLoggingIn: false,
-        loginAttempts: 0
+        loginAttempts: 0,
+        isRegistering: false
     },
     getters: {
         user: state => {
@@ -34,6 +35,9 @@ export default {
         },
         isLoggingIn: state => {
             return state.isLoggingIn;
+        },
+        isRegistering: state => {
+            return state.isRegistering;
         }
     },
     mutations: {
@@ -70,9 +74,40 @@ export default {
         },
         [types.SET_TOKEN](state, payload) {
             state.token = payload;
+        },
+        [types.ATTEMPT_REGISTER](state) {
+            state.isRegistering = true;
+        },
+        [types.REGISTER_SUCCESS](state, payload) {
+            state.name = state.email = state.password = "";
+            state.user = payload;
+            state.isRegistering = false;
+        },
+        [types.REGISTER_FAILURE](state) {
+            state.isRegistering = false;
+        },
+        [types.LOGOUT](state) {
+            state.user = {};
+            state.token = "";
+        },
+        [types.FETCH_USER_SUCCESS](state, payload) {
+            state.user = payload;
+        },
+        [types.FETCH_USER_FAILURE](state) {
+            state.user = {};
         }
     },
     actions: {
+        async fetchUser({commit}) {
+            try {
+                await authService.user()
+                    .then(user => {
+                        commit(types.FETCH_USER_SUCCESS, user);
+                    })
+            } catch (e) {
+                commit(types.FETCH_USER_FAILURE);
+            }
+        },
         login({commit, state, dispatch}) {
             return new Promise((resolve, reject) => {
                 commit(types.ATTEMPT_LOGIN);
@@ -94,8 +129,35 @@ export default {
         setToken({commit, state}) {
             commit(types.SET_TOKEN, state.user.token);
         },
-        register() {
+        register({commit, state, dispatch}) {
+            return new Promise((resolve, reject) => {
+                commit(types.ATTEMPT_REGISTER);
 
+                authService.register({
+                    "name": state.name,
+                    "email": state.email,
+                    "password": state.password
+                })
+                    .then(user => {
+                        commit(types.REGISTER_SUCCESS, user);
+                        dispatch('setToken');
+                        resolve(user);
+                    }).catch(e => {
+                    commit(types.REGISTER_FAILURE);
+                    reject(e);
+                })
+            });
+        },
+        logout({commit}) {
+            return new Promise((resolve, reject) => {
+                authService.logout()
+                    .then(response => {
+                        commit(types.LOGOUT);
+                        resolve(response);
+                    }).catch(e => {
+                    reject(e);
+                })
+            })
         }
     }
 }

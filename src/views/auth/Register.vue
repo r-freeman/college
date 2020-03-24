@@ -87,7 +87,8 @@
                             class="inline-flex bg-gray-400 select-none justify-center w-full rounded-md border border-transparent px-4 py-3 text-base leading-6 font-medium text-white shadow-sm focus:outline-none transition ease-in-out duration-150 sm:text-sm sm:leading-5"
                             :class="[!invalid && changed ? enabledClass : '']"
                             :disabled="invalid">
-                        Sign In
+                        <TailSpin v-if="isRegistering" class="w-6 h-6 mx-auto"/>
+                        <span v-else class="block leading-relaxed w-full h-6">Register</span>
                     </button>
                 </div>
             </form>
@@ -97,10 +98,12 @@
 
 <script>
     import {ValidationObserver, ValidationProvider} from "vee-validate";
+    import {mapGetters} from "vuex";
     import Full from "../../layouts/Full";
     import Education from "../../assets/svg/Education";
     import Check from "../../assets/svg/Check";
     import Cross from "../../assets/svg/Cross";
+    import TailSpin from "../../assets/svg/TailSpin";
 
     export default {
         name: "Register",
@@ -116,7 +119,8 @@
             ValidationProvider,
             Education,
             Check,
-            Cross
+            Cross,
+            TailSpin
         },
         created() {
             this.$emit("update:layout", Full);
@@ -154,11 +158,16 @@
                 set(val) {
                     this.$store.commit('auth/SET_CONFIRM', val);
                 }
-            }
+            },
+            ...mapGetters('auth', ['isRegistering'])
         },
         methods: {
             register() {
-
+                this.$store.dispatch('auth/register')
+                    .then(() => {
+                        this.$router.push('/');
+                    }).catch(e => {
+                })
             }
         }
     }
