@@ -214,29 +214,5 @@
     }
 </script>
 
-<style scoped>
-    .valid {
-        @apply border-green-400
-    }
-
-    .error {
-        @apply border-red-400
-    }
-
-    .enabled {
-        @apply bg-green-400
-    }
-
-    .enabled:hover {
-        @apply bg-green-500
-    }
-
-    .date-picker::-webkit-calendar-picker-indicator {
-        color: #4A5568;
-        background: #fff;
-    }
-
-    .date-picker::-webkit-inner-spin-button {
-        display: none;
-    }
+<style src="../../assets/css/form.css" scoped>
 </style>

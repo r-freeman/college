@@ -181,20 +181,5 @@
     }
 </script>
 
-<style scoped>
-    .valid {
-        @apply border-green-400
-    }
-
-    .error {
-        @apply border-red-400
-    }
-
-    .enabled {
-        @apply bg-green-400
-    }
-
-    .enabled:hover {
-        @apply bg-green-500
-    }
+<style src="../../assets/css/form.css" scoped>
 </style>
