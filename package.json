@@ -13,7 +13,7 @@
     "core-js": "^3.6.4",
     "json-cookie": "^1.0.0",
     "lodash": "^4.17.15",
-    "minimist": "^1.2.2",
+    "minimist": "^1.2.6",
     "tailwindcss": "^1.2.0",
     "typeface-nunito-sans": "^0.0.72",
     "vee-validate": "^3.2.5",
